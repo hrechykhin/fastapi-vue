@@ -18,6 +18,8 @@
 <script>
 import axios from 'axios';
 
+const API_BASE = process.env.VUE_APP_API_BASE;
+
 export default {
   name: 'UserRegister',
   data() {
@@ -29,7 +31,7 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await axios.post('http://localhost:8000/register', {
+        const response = await axios.post(`${API_BASE}/register`, {
           username: this.username,
           password: this.password
         }, {

@@ -18,6 +18,8 @@
 <script>
 import axios from 'axios';
 
+const API_BASE = process.env.VUE_APP_API_BASE;
+
 export default {
   name: 'UserLogin',
   data() {
@@ -33,7 +35,7 @@ export default {
         params.append('username', this.username);
         params.append('password', this.password);
 
-        const response = await axios.post('http://localhost:8000/token', params);
+        const response = await axios.post(`${API_BASE}/token`, params);
         localStorage.setItem('token', response.data.access_token);
         this.$router.push('/todos');
       } catch (error) {

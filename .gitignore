@@ -11,3 +11,6 @@ __pycache__/
 .idea/
 
 test.db
+sqlite_data
+
+.env

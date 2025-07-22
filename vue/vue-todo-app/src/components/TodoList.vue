@@ -27,6 +27,8 @@
 <script>
 import axios from 'axios';
 
+const API_BASE = process.env.VUE_APP_API_BASE;
+
 export default {
   name: 'TodoList',
   data() {
@@ -42,7 +44,7 @@ export default {
   methods: {
     async fetchTodos() {
       try {
-        const response = await axios.get('http://localhost:8000/todos', {
+        const response = await axios.get(`${API_BASE}/todos`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -54,7 +56,7 @@ export default {
     },
     async addTodo() {
       try {
-        const response = await axios.post('http://localhost:8000/todos', {
+        const response = await axios.post(`${API_BASE}/todos`, {
           title: this.title,
           description: this.description
         }, {
@@ -72,7 +74,7 @@ export default {
     async deleteTodo(todoId) {
       console.log(1, todoId)
       try {
-        await axios.delete(`http://localhost:8000/todos/${todoId}`, {
+        await axios.delete(`${API_BASE}/todos/${todoId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }

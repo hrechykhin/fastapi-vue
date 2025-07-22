@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./fastapi
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./fastapi:/app
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ./vue/vue-todo-app
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./vue/vue-todo-app:/app
+      - /app/node_modules
+    command: npm run serve
